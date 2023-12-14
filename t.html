@@ -71,10 +71,9 @@
     </table>
 
     <script>
-       
         document.getElementById('myForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
+    
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
             const pincode = document.getElementById('pincode').value;
@@ -83,8 +82,13 @@
             const foodSelection = Array.from(foodCheckboxes).map(cb => cb.value).join(', ');
             const state = document.getElementById('state').value;
             const country = document.getElementById('country').value;
-
-
+    
+            // Check if at least two food options are selected
+            if (foodCheckboxes.length < 2) {
+                alert('Please select at least two food options.');
+                return;
+            }
+    
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
                 <td>${firstName}</td>
@@ -95,12 +99,12 @@
                 <td>${state}</td>
                 <td>${country}</td>
             `;
-
-       
+    
             document.getElementById('dataTable').querySelector('tbody').appendChild(newRow);
-
+    
             document.getElementById('myForm').reset();
         });
     </script>
+    
 </body>
 </html>
